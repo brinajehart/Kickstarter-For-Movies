@@ -1,12 +1,10 @@
 angular.module('ngView', [], function ($routeProvider, $locationProvider) {
-
-
-    $routeProvider.when('/', { template: "This is Root" });
-    $routeProvider.when('/login', { template: "This is Login" });
-    $routeProvider.when('/register', { template: "This is Register" });
-    $routeProvider.otherwise({
-        redirectTo: "/"
-    });
+    
+    $routeProvider
+        .when('/', { templateUrl: "./views/default.html" })
+        .when('/login', { templateUrl: "./views/login.html" })
+        .when('/register', { templateUrl: "./views/register.html" })
+        .otherwise({ redirectTo: "/login" });
 
     $locationProvider.html5Mode(false);
 });
@@ -18,6 +16,4 @@ function MainCntl($scope, $route, $routeParams, $location, $window) {
     $scope.back = function () {
         $window.history.back();
     }
-
-    $location.hash('');
 }
