@@ -1,52 +1,112 @@
+@import url("https://fonts.googleapis.com/css?family=Amatic+SC&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 
 body {
-    background: url(https://www.wallpaperup.com/uploads/wallpapers/2012/11/21/22252/4017e3ef45ecad1fb1ee9a8f3635eab9-700.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
+  background: url(https://www.wallpaperup.com/uploads/wallpapers/2012/11/21/22252/4017e3ef45ecad1fb1ee9a8f3635eab9-700.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+* {
+  font-family: "Montserrat", sans-serif;
+}
+
+a {
+  color: grey;
+  transition: all .3s;
+}
+
+a:hover {
+  color: #e52d27;
+  text-decoration: none !important;
 }
 
 .form-box {
-    border-radius: 10px;
-    height: auto; 
-    width: 40%;
-    margin-top: 70px;
-    min-width: 100px !important; 
-    background-color: #ffffffe9;
+  border-radius: 10px;
+  height: auto;
+  width: 40%;
+  margin-top: 60px;
+  min-width: 100px !important;
+  background-color: #bdbdbd8a;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.322),
+    0 4px 6px -2px rgba(0, 0, 0, 0.514);
 }
 
 .home-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: auto; 
-    width: 40%;
-    margin-top: 70px;
-    background-color: #ffffff4b;
-    border-radius: 10px;
-    flex-wrap: wrap;
-    padding-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  width: 70%;
+  margin-top: 40px;
+  background-color: #00000050;
+  flex-wrap: wrap;
+  padding-bottom: 20px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.322),
+    0 4px 6px -2px rgba(0, 0, 0, 0.514);
 }
-.home-container img {
 
+.home-container img {
+  width: 30%;
+  margin-left: 30%;
+  margin-right: 30%;
+  display: block;
 }
 
 .no-radius {
-    border-radius: 0 !important;
+  border-radius: 0 !important;
 }
 
 .home-container button {
-    width: 40%;
-    margin: 5px !important;
+  width: 45%;
+  margin: 5px !important;
+  padding: 20px !important;
+  border: 2px solid #ffffff92;
+  border-radius: 10px !important;
+}
+
+.red-to-black {
+  background-image: linear-gradient(to left, #1f1f1f, #a71404);
+}
+
+.black-to-red {
+  background-image: linear-gradient(to left, #a71404, #333);
 }
 
 .form-header {
-    border-radius: 10px;
-    background-color: #326f7a;
-    color: white !important;
-    padding: 10px;
-    margin: 0 auto;
-    text-align: center;
+  border-radius: 10px;
+  background-image: linear-gradient(to right, #e52d27, #b31217);
+  color: white !important;
+  padding: 10px;
+  margin: 0 auto;
+  text-align: center;
 }
-.nav * {
-    color: white !important
+
+hr {
+  width: 100% !important;
+  border-top: 1px solid #a7a7a7;
+  margin-left: 5% !important;
+  margin-right: 5% !important;
+}
+
+.sexy-text {
+  font-size: 3em;
+  color: #eee;
+  font-family: "Amatic SC", cursive;
+}
+
+.kick-btn {
+  background: #e52d27 !important;
+}
+
+.custom-file-control,
+.form-control,
+.is-focused .custom-file-control,
+.is-focused {
+  background-image: linear-gradient(0deg, grey 2px, rgba(0, 150, 136, 0) 0),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.26) 1px, transparent 0) !important;
+}
+
+.bmd-form-group.is-focused * {
+  color: grey;
 }
