@@ -1,19 +1,19 @@
-<div style="display: flex; width: 100%; height: 100%; justify-content: center; align-items: center;">
+<div ng-init="init()" style="display: flex; width: 100%; height: 100%; justify-content: center; align-items: center;">
     <div class="form-box">
         <div class="form-header">
             <h2>Sign In</h2>
-        </div>
+        </div> 
         <form style="padding: 20px">
             <div class="form-group">
                 <label for="email-label" class="bmd-label-floating">Email address</label>
-                <input type="email" class="form-control" id="email-label">
+                <input ng-model="form.email" type="email" class="form-control" id="email-label">
             </div>
             <div class="form-group">
                 <label for="pass-label" class="bmd-label-floating">Password</label>
-                <input type="password" class="form-control" id="pass-label">
+                <input ng-model="form.password" type="password" class="form-control" id="pass-label">
             </div>
-            <button type="button" class="btn btn-raised btn-primary kick-btn">Sign In</button>
-            <a href="/register">Don't have an account yet?</a>
+            <button type="button" ng-click="login()" class="btn btn-raised btn-primary kick-btn">Sign In</button>
+            <a ng-click="goToRegister()">Don't have an account yet?</a>
         </form>
     </div>
 </div>

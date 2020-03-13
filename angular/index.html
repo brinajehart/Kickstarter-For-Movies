@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div ng-app="ngView" ng-controller="MainCntl">
+    <div ng-app="mKicksStarter" ng-controller="MainCntl">
         <ul ng-if="$window.location.href != '/'" class="nav nav-tabs bg-dark">
             <li class="nav-item">
                 <a class="nav-link" href="#/"><i class="material-icons">movie</i>{{" KickStarter For Movies"}}</a>
@@ -24,10 +24,12 @@
 
 </body>
 
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
 <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
+<script type="text/javascript" src="services.js"></script>
 <script type="text/javascript" src="app.js"></script>
 <link rel="stylesheet" href="css/index.css" />
 

@@ -1,0 +1,11 @@
+<div class="list-container">
+    <ul class="list-unstyled">
+        <li ng-repeat="script in scripts track by $index" class="media" style="margin-bottom: 10px;">
+            <img class="mr-3 list-img" ng-src="script.img" onerror="this.src='./../resources/img-error.png'">
+            <div class="media-body">
+                <h5 class="mt-0 mb-1">{{ script.title }}</h5>
+                {{ script.content }}
+            </div>
+        </li>
+    </ul>
+</div>

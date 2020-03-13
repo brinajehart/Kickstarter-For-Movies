@@ -13,12 +13,13 @@ body {
 
 a {
   color: grey;
-  transition: all .3s;
+  transition: all 0.3s;
 }
 
 a:hover {
-  color: #e52d27;
+  color: #e52d27 !important;
   text-decoration: none !important;
+  cursor: pointer;
 }
 
 .form-box {
@@ -82,6 +83,27 @@ a:hover {
   text-align: center;
 }
 
+.checkbox label input[type="checkbox"]:checked + .checkbox-decorator .check,
+label.checkbox-inline
+  input[type="checkbox"]:checked
+  + .checkbox-decorator
+  .check {
+  color: #e52d27 !important;
+  border-color: #e52d27 !important;
+}
+
+.checkbox
+  label
+  input[type="checkbox"]:checked
+  + .checkbox-decorator
+  .check:before,
+label.checkbox-inline
+  input[type="checkbox"]:checked
+  + .checkbox-decorator
+  .check:before {
+  color: #e52d27 !important;
+}
+
 hr {
   width: 100% !important;
   border-top: 1px solid #a7a7a7;
@@ -109,4 +131,21 @@ hr {
 
 .bmd-form-group.is-focused * {
   color: grey;
+}
+
+.list-container {
+  margin: 20px;
+  width: calc(100%-40px);
+  padding: 10px;
+}
+
+.list-container li {
+  padding: 5px;
+  background: linear-gradient(to right, #b4b4b466, #2c2c2c25);
+  box-shadow: 0 10px 15px -3px #00000073, 0 4px 6px -2px #00000037;
+}
+
+.list-img {
+  height: 100px !important;
+  width: auto !important;
 }
