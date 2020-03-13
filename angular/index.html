@@ -4,18 +4,17 @@
 <head>
     <meta charset="utf-8" />
     <title>Movies Kick Starter</title>
-    <link rel="icon" href="resources/favicon.ico"/>
+    <link rel="icon" href="resources/favicon.ico" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
-    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+    <link rel="stylesheet"
+        href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css"
+        integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.js"></script>
 </head>
 
 <body>
     <div ng-app="mKicksStarter" ng-controller="MainCntl">
-        <ul ng-if="$window.location.href != '/'" class="nav nav-tabs bg-dark">
-            <li class="nav-item">
-                <a class="nav-link" href="#/"><i class="material-icons">movie</i>{{" KickStarter For Movies"}}</a>
-            </li>
+        <ul style="width: 100%" id="nav" class="nav nav-tabs bg-dark">
         </ul>
 
         <div style="padding: 10px" ng-view></div>
@@ -25,12 +24,34 @@
 </body>
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
-<script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js"
+    integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U"
+    crossorigin="anonymous"></script>
+<script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js"
+    integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9"
+    crossorigin="anonymous"></script>
+<script>$(document).ready(function () { $('body').bootstrapMaterialDesign(); });</script>
 <script type="text/javascript" src="services.js"></script>
 <script type="text/javascript" src="app.js"></script>
 <link rel="stylesheet" href="css/index.css" />
+<script>
+
+    window.onload = function () {
+        drawNavigation();
+    }
+
+    window.drawNavigation = function () {
+        const isLoggedIn = localStorage.getItem('kfm_');
+        const isCompany = JSON.parse(localStorage.getItem('kfmC_'));
+        if (isLoggedIn && isCompany === false) {
+            $("#nav").load("./navs/user.html");
+        } else if (isLoggedIn && isCompany === true) {
+            $("#nav").load("./navs/company.html")
+        } else {
+            $("#nav").load("./navs/nouser.html")
+        }
+    }
+</script>
 
 </html>

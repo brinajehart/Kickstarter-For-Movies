@@ -38,7 +38,7 @@ router.post('/register-user', (req, res, next) => {
 router.post('/login-user', (req, res, next) => {
     const qb = new QueryBuilder(settings, 'mysql', 'single');
 
-    qb.select("id, email, is_company, password").from('users')
+    qb.select("id, email, is_company, display_name, password").from('users')
         .where({ email: req.body.email })
         .get(async (error, result) => {
             qb.disconnect();
@@ -66,7 +66,8 @@ router.post('/login-user', (req, res, next) => {
                         res.status(200).json({
                             ok: true,
                             result: jwtToken,
-                            is_company: result[0].is_company == "1"
+                            is_company: result[0].is_company == "1",
+                            display_name: result[0].display_name
                         });
                     } else {
                         res.status(200).json({

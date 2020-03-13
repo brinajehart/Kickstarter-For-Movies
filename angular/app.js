@@ -26,9 +26,15 @@ function MainCntl($scope, $route, $routeParams, $location, $window) {
     }
 }
 
-const goTo = ($location, url) => $location.url(url);
+const goTo = ($location, url) => {
+    $location.url(url);
+}
 
 app.controller('DefController', function ($scope, $location) {
+
+    $scope.init = function () {
+        window.drawNavigation();
+    }
 
     $scope.goToLogin = function () { goTo($location, '/login') }
     $scope.goToRegister = function () { goTo($location, '/register') }
@@ -40,6 +46,7 @@ app.controller('LoginController', function ($scope, $location) {
     $scope.init = function () {
         localStorage.removeItem('kfm_');
         localStorage.removeItem('kfmC_');
+        window.drawNavigation();
     }
 
     $scope.goToRegister = function () { goTo($location, '/register') }
@@ -55,9 +62,8 @@ app.controller('LoginController', function ($scope, $location) {
         if (response.ok) {
             localStorage.setItem('kfm_', response.result);
             localStorage.setItem('kfmC_', response.is_company || false);
-            swal('Prijava je uspela').then(val => {
-                window.location = '#/scripts';
-            });
+            localStorage.setItem('kfmDN_', response.display_name || "/");
+            window.location = '#/scripts';
         } else {
             swal(response.result);
         }
@@ -65,6 +71,10 @@ app.controller('LoginController', function ($scope, $location) {
 
 });
 app.controller('RegisterController', function ($scope, $location) {
+
+    $scope.init = function () {
+        window.drawNavigation();
+    }
 
     $scope.goToLogin = function () { goTo($location, '/login') }
 
@@ -88,6 +98,11 @@ app.controller('RegisterController', function ($scope, $location) {
 });
 
 app.controller('ScriptController', function ($scope, $location) {
+
+    $scope.init = function () {
+        window.drawNavigation();
+    }
+
     $scope.scripts = [{
         img: '',
         title: "Secret agent Tončka",

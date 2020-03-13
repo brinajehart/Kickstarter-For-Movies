@@ -129,6 +129,10 @@ hr {
     linear-gradient(0deg, rgba(0, 0, 0, 0.26) 1px, transparent 0) !important;
 }
 
+* {
+    list-style-type: none !important;
+}
+
 .bmd-form-group.is-focused * {
   color: grey;
 }
@@ -148,4 +152,13 @@ hr {
 .list-img {
   height: 100px !important;
   width: auto !important;
+}
+
+a.user-label:hover {
+    color: white !important;
+}
+
+#DN_placeholder {
+    font-weight: bold;
+    color: #ccb9a7;
 }
