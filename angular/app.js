@@ -10,7 +10,7 @@ var app = angular.module('mKicksStarter', [], function ($routeProvider, $locatio
         .when('/', { templateUrl: "./views/default.html", controller: "DefController" })
         .when('/login', { templateUrl: "./views/login.html", controller: "LoginController" })
         .when('/register', { templateUrl: "./views/register.html", controller: "RegisterController" })
-        .when('/scripts', { templateUrl: './views/scripts.html', controller: "ScriptController" })
+        .when('/scripts', { templateUrl: './views/scripts.html', controller: "ScriptController", resolve: { loggedIn } })
         .otherwise({ redirectTo: "/login" });
 
     $locationProvider.html5Mode(false);
