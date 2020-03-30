@@ -5,7 +5,7 @@
             <div class="media-body">
                 <h5 class="mt-0 mb-1">{{ script.title }}</h5>
                 <small>{{ script.datecreated }}</small><br/>
-                {{ script.description }}
+                <small>Description:</small> {{ script.description ? script.description : '/' }}<br/>
                 <a href="{{ script.trailer }}">{{ script.trailer }}</a>
             </div>
             <div>

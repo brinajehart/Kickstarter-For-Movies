@@ -12,7 +12,7 @@ var app = angular.module('mKicksStarter', [], function ($routeProvider, $locatio
         .when('/register', { templateUrl: "./views/register.html", controller: "RegisterController" })
         .when('/profile/:id', { templateUrl: "./views/profile.html", controller: "ProfileController", resolve: { loggedIn } })
         .when('/edit/profile', { templateUrl: "./views/editprofile.html", controller: "EditPController", resolve: { loggedIn } })
-        .when('/scripts', { templateUrl: './views/scripts.html', controller: "ScriptController", resolve: { loggedIn } })
+        .when('/scripts', { templateUrl: './views/scripts.html', controller: "ScriptController" })
         .when('/create/script', { templateUrl: './views/scriptform.html', controller: "ScriptCreateController", resolve: { loggedIn }})
         .when('/update/script/:id', { templateUrl: './views/scriptform.html', controller: "ScriptUpdateController", resolve: { loggedIn }})
         .when('/view/script/:id', { templateUrl: './views/scriptview.html', controller: "ScriptViewController", resolve: { loggedIn } })
@@ -130,15 +130,14 @@ app.controller('ScriptCreateController', function ($scope, $location) {
         const response = await services.getGenres();
         if (response.ok) {
             $scope.genres = response.result;
-            $scope.scriptForm.genre = $scope.genres[0].id;
+            $scope.scriptForm.genre_id = $scope.genres[0].id;
             $scope.$apply();
         }
     }
 
-    $scope.submit = function() {
-        console.log("ustvari novo idejo", $scope.scriptForm);
+    $scope.submit = async function() {
+        const response = await services.createScript($scope.scriptForm);
     }
-    
 
     $scope.title = 'Add New Script'
 });
@@ -165,8 +164,8 @@ app.controller('ScriptUpdateController', ['$scope', '$routeParams', function ($s
     }
     
 
-    $scope.submit = function() {
-        console.log("posodobi idejo", $scope.scriptForm);
+    $scope.submit = async function() {
+        const response = await services.updateScript($scope.scriptForm, $routeParams.id);
     }
 
     $scope.title = 'Update Script'
@@ -182,15 +181,9 @@ app.controller('ScriptViewController', ['$scope', '$routeParams', function ($sco
         const scriptResponse = await services.getScriptById($routeParams.id);
         if (scriptResponse.ok) {
             $scope.scriptView = scriptResponse.result;
-            $scope.scriptView.datecreated = moment($scope.scriptView.datecreated).format('MMMM Do YYYY')
-            console.log(scriptResponse);
+            $scope.scriptView.datecreated = moment($scope.scriptView.datecreated).format('MMMM Do YYYY');
             $scope.$apply();
         }
-    }
-    
-
-    $scope.submit = function() {
-        console.log("posodobi idejo", $scope.scriptForm);
     }
 
     $scope.title = 'Update Script'

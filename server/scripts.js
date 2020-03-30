@@ -18,7 +18,7 @@ router.post('/get-all-genres', async (req, res, next) => {
         });
 });
 
-router.post('/get-script-by-id/:scriptId', async (req, res, next) => {
+router.post('/get-script-by-id/:scriptId', requireAuth, async (req, res, next) => {
     const scriptId = req.params.scriptId;
     const qb = new QueryBuilder(settings, 'mysql', 'single');
     qb.select("*").from('scripts')
@@ -42,6 +42,31 @@ router.post('/get-all-scripts', async (req, res, next) => {
                 result: result
             });
         });
+});
+
+router.post('/create', requireAuth, async (req, response, next) => {
+    console.log(req.body);
+    const qb = new QueryBuilder(settings, "mysql", "single");
+    qb.returning("id").insert("scripts", {...req.body, user_id: req.USER_ID }, (err, res) => {
+        console.log(err, res);
+        response.status(200).json({
+            ok: !!err,
+            result: res
+        })
+    });
+});
+
+router.post('/update/:id', requireAuth, async (req, response, next) => {
+    const { title, trailer, description, genre_id } = req.body;
+    const update = { title, trailer, description, genre_id };
+    const qb = new QueryBuilder(settings, "mysql", "single");
+    qb.update("scripts", update, { id: req.params.id }, (err, res) => {
+        console.log(err, res);
+        response.status(200).json({
+            ok: !!err,
+            result: res
+        })
+    });
 });
 
 
