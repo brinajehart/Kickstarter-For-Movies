@@ -4,7 +4,13 @@
             <img class="mr-3 list-img" ng-src="script.img" onerror="this.src='./../resources/img-error.png'">
             <div class="media-body">
                 <h5 class="mt-0 mb-1">{{ script.title }}</h5>
-                {{ script.content }}
+                <small>{{ script.datecreated }}</small><br/>
+                {{ script.description }}
+                <a href="{{ script.trailer }}">{{ script.trailer }}</a>
+            </div>
+            <div>
+                <button type="button" ng-click="goToEditScript(script.id)" class="btn btn-raised btn-primary kick-btn">Edit</button>
+                <button type="button" ng-click="goToViewScript(script.id)" class="btn btn-raised btn-primary kick-btn">View</button>
             </div>
         </li>
     </ul>

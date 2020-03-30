@@ -130,7 +130,7 @@ hr {
 }
 
 * {
-    list-style-type: none !important;
+  list-style-type: none !important;
 }
 
 .bmd-form-group.is-focused * {
@@ -144,9 +144,11 @@ hr {
 }
 
 .list-container li {
-  padding: 5px;
-  background: linear-gradient(to right, #b4b4b466, #2c2c2c25);
+  margin: 30px;
+  padding: 10px;
+  background: linear-gradient(to right, #b4b4b4a6, #2c2c2c93);
   box-shadow: 0 10px 15px -3px #00000073, 0 4px 6px -2px #00000037;
+  border-radius: 10px;
 }
 
 .list-img {
@@ -155,10 +157,15 @@ hr {
 }
 
 a.user-label:hover {
-    color: white !important;
+  color: white !important;
 }
 
 #DN_placeholder {
-    font-weight: bold;
-    color: #ccb9a7;
+  font-weight: bold;
+  color: #ccb9a7;
+}
+
+.list-unstyled {
+  min-width: 200px !important;
+  width: 50% !important;
 }

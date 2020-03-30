@@ -33,9 +33,9 @@ router.post('/get-script-by-id/:scriptId', async (req, res, next) => {
         });
 });
 
-router.post('get-all-scripts', async (req, res, next) => {
+router.post('/get-all-scripts', async (req, res, next) => {
     const qb = new QueryBuilder(settings, 'mysql', 'single');
-    qb.select("id, title, youtube_link, datecreated").from('scripts')
+    qb.select("*").from('scripts')
         .get((err, result) => {
             qb.disconnect();
             res.status(200).json({

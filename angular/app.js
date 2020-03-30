@@ -146,7 +146,7 @@ app.controller('ScriptUpdateController', function ($scope, $location) {
 
     $scope.genres = [];
     $scope.scriptForm = {};
-    
+
     $scope.init = async function () {
         window.drawNavigation();
         const response = await services.getGenres();
@@ -166,17 +166,18 @@ app.controller('ScriptUpdateController', function ($scope, $location) {
 
 app.controller('ScriptController', function ($scope, $location) {
 
-    $scope.init = function () {
+    $scope.scripts = [];
+    $scope.init = async function () {
         window.drawNavigation();
+        const response = await services.getScripts();
+        $scope.scripts = response.result.map(item => ({
+            ...item,
+            datecreated: moment(item.datecreated).format('MMMM Do YYYY')
+        }));
+        $scope.$apply();
     }
 
-    $scope.scripts = [{
-        img: '',
-        title: "Secret agent Tončka",
-        content: 'ful fajn stvar',
-    }, {
-        img: '',
-        title: "Noč v štali",
-        content: 'nč kj vlk',
-    }]
+    $scope.goToEditScript = function (idScript) { goTo($location, `/update/script/${idScript}`) }
+    $scope.goToViewScript = function (idScript) { goTo($location, `/view/script/${idScript}`) }
+
 });
