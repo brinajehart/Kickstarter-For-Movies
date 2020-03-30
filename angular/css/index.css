@@ -169,3 +169,14 @@ a.user-label:hover {
   min-width: 200px !important;
   width: 50% !important;
 }
+
+.kfm-card, .card-footer {
+    min-width: 200px !important;
+    width: 80vw;
+    background-color: #b8b8b894;
+}
+
+.kfm-card {
+    margin-left: 10vw !important;
+    margin-top: 20px;
+}

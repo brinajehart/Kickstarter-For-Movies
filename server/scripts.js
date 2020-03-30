@@ -21,8 +21,7 @@ router.post('/get-all-genres', async (req, res, next) => {
 router.post('/get-script-by-id/:scriptId', async (req, res, next) => {
     const scriptId = req.params.scriptId;
     const qb = new QueryBuilder(settings, 'mysql', 'single');
-    console.log(token, "129");
-    qb.select("id, title").from('scripts')
+    qb.select("*").from('scripts')
         .where('id', scriptId)
         .get((err, result) => {
             qb.disconnect();

@@ -15,6 +15,7 @@ var app = angular.module('mKicksStarter', [], function ($routeProvider, $locatio
         .when('/scripts', { templateUrl: './views/scripts.html', controller: "ScriptController", resolve: { loggedIn } })
         .when('/create/script', { templateUrl: './views/scriptform.html', controller: "ScriptCreateController", resolve: { loggedIn }})
         .when('/update/script/:id', { templateUrl: './views/scriptform.html', controller: "ScriptUpdateController", resolve: { loggedIn }})
+        .when('/view/script/:id', { templateUrl: './views/scriptview.html', controller: "ScriptViewController", resolve: { loggedIn } })
         .otherwise({ redirectTo: "/" });
 
     $locationProvider.html5Mode(false);
@@ -142,16 +143,47 @@ app.controller('ScriptCreateController', function ($scope, $location) {
     $scope.title = 'Add New Script'
 });
 
-app.controller('ScriptUpdateController', function ($scope, $location) {
+app.controller('ScriptUpdateController', ['$scope', '$routeParams', function ($scope, $routeParams) {
 
     $scope.genres = [];
     $scope.scriptForm = {};
 
     $scope.init = async function () {
         window.drawNavigation();
-        const response = await services.getGenres();
-        if (response.ok) {
-            $scope.genres = response.result;
+        const genresResponse = await services.getGenres();
+        if (genresResponse.ok) {
+            $scope.genres = genresResponse.result;
+            $scope.$apply();
+        }
+
+        const scriptResponse = await services.getScriptById($routeParams.id);
+        if (scriptResponse.ok) {
+            $scope.scriptForm = scriptResponse.result;
+            $scope.$apply();
+            setTimeout(() => document.getElementById("title").focus(), 200);
+        }
+    }
+    
+
+    $scope.submit = function() {
+        console.log("posodobi idejo", $scope.scriptForm);
+    }
+
+    $scope.title = 'Update Script'
+}]);
+
+
+app.controller('ScriptViewController', ['$scope', '$routeParams', function ($scope, $routeParams) {
+
+    $scope.scriptView = {};
+
+    $scope.init = async function () {
+        window.drawNavigation();
+        const scriptResponse = await services.getScriptById($routeParams.id);
+        if (scriptResponse.ok) {
+            $scope.scriptView = scriptResponse.result;
+            $scope.scriptView.datecreated = moment($scope.scriptView.datecreated).format('MMMM Do YYYY')
+            console.log(scriptResponse);
             $scope.$apply();
         }
     }
@@ -162,7 +194,7 @@ app.controller('ScriptUpdateController', function ($scope, $location) {
     }
 
     $scope.title = 'Update Script'
-});
+}]);
 
 app.controller('ScriptController', function ($scope, $location) {
 
