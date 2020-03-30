@@ -153,8 +153,3 @@ app.controller('ScriptController', function ($scope, $location) {
         content: 'nč kj vlk',
     }]
 });
-<<<<<<< HEAD
-
-
-=======
->>>>>>> c4f6824627bd507e7fd9e1e77125c19a664af73e
