@@ -30,4 +30,20 @@ class services {
             resolve(content);
         });
     }
+
+    
+    static async getGenres() {
+        return new Promise(async (resolve, reject) => {
+            const rawResponse = await fetch('/api/scripts/get-all-genres', {
+                method: 'POST',
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+                }
+            });
+            const content = await rawResponse.json();
+
+            resolve(content);
+        });
+    }
 }

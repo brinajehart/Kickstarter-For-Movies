@@ -121,20 +121,47 @@ app.controller('ProfileController', function ($scope, $location) {
 
 app.controller('ScriptCreateController', function ($scope, $location) {
 
-    $scope.init = function () {
+    $scope.scriptForm = {};
+    $scope.genres = [];
+
+    $scope.init = async function () {
         window.drawNavigation();
+        const response = await services.getGenres();
+        if (response.ok) {
+            $scope.genres = response.result;
+            $scope.scriptForm.genre = $scope.genres[0].id;
+            $scope.$apply();
+        }
     }
 
-    $scope.title = 'Dodaj novo idejo'
+    $scope.submit = function() {
+        console.log("ustvari novo idejo", $scope.scriptForm);
+    }
+    
+
+    $scope.title = 'Add New Script'
 });
 
 app.controller('ScriptUpdateController', function ($scope, $location) {
 
-    $scope.init = function () {
+    $scope.genres = [];
+    $scope.scriptForm = {};
+    
+    $scope.init = async function () {
         window.drawNavigation();
+        const response = await services.getGenres();
+        if (response.ok) {
+            $scope.genres = response.result;
+            $scope.$apply();
+        }
+    }
+    
+
+    $scope.submit = function() {
+        console.log("posodobi idejo", $scope.scriptForm);
     }
 
-    $scope.title = 'Posodobi svojo idejo'
+    $scope.title = 'Update Script'
 });
 
 app.controller('ScriptController', function ($scope, $location) {

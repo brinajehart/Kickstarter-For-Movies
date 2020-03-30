@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const passwordHash = require('password-hash');
 const QueryBuilder = require('node-querybuilder');
 const settings = require('./connect');
 const jwt = require('jsonwebtoken');

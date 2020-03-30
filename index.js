@@ -3,7 +3,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const authRoutes = require("./server/auth.js");
-const scriptRoutes = require("./server/auth.js");
+const scriptRoutes = require("./server/scripts.js");
 
 const app = express();
 app.use(bodyParser.json());
