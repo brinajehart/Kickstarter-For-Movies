@@ -65,6 +65,7 @@ router.post('/login-user', (req, res, next) => {
                         });
                         res.status(200).json({
                             ok: true,
+                            id: result[0].id,
                             result: jwtToken,
                             is_company: result[0].is_company == "1",
                             display_name: result[0].display_name

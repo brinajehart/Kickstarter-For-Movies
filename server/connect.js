@@ -1,7 +1,7 @@
 module.exports = {
-    host: 'localhost',
-    port: '3306',
-    database: 'kfm',
-    user: 'root',
-    password: ''
+    host: 'remotemysql.com',
+    port: 3306,
+    database: 'HsNdAQa1bZ',
+    user: 'HsNdAQa1bZ',
+    password: 'yGIsztXCR4'
 }

@@ -10,8 +10,12 @@ var app = angular.module('mKicksStarter', [], function ($routeProvider, $locatio
         .when('/', { templateUrl: "./views/default.html", controller: "DefController" })
         .when('/login', { templateUrl: "./views/login.html", controller: "LoginController" })
         .when('/register', { templateUrl: "./views/register.html", controller: "RegisterController" })
-        .when('/scripts', { templateUrl: './views/scripts.html', controller: "ScriptController" })
-        .otherwise({ redirectTo: "/login" });
+        .when('/profile/:id', { templateUrl: "./views/profile.html", controller: "ProfileController", resolve: { loggedIn } })
+        .when('/edit/profile', { templateUrl: "./views/editprofile.html", controller: "EditPController", resolve: { loggedIn } })
+        .when('/scripts', { templateUrl: './views/scripts.html', controller: "ScriptController", resolve: { loggedIn } })
+        .when('/create/script', { templateUrl: './views/scriptform.html', controller: "ScriptCreateController", resolve: { loggedIn }})
+        .when('/update/script/:id', { templateUrl: './views/scriptform.html', controller: "ScriptUpdateController", resolve: { loggedIn }})
+        .otherwise({ redirectTo: "/" });
 
     $locationProvider.html5Mode(false);
 
@@ -46,6 +50,8 @@ app.controller('LoginController', function ($scope, $location) {
     $scope.init = function () {
         localStorage.removeItem('kfm_');
         localStorage.removeItem('kfmC_');
+        localStorage.removeItem('kfmDN_');
+        localStorage.removeItem('kfmID_');
         window.drawNavigation();
     }
 
@@ -63,6 +69,7 @@ app.controller('LoginController', function ($scope, $location) {
             localStorage.setItem('kfm_', response.result);
             localStorage.setItem('kfmC_', response.is_company || false);
             localStorage.setItem('kfmDN_', response.display_name || "/");
+            localStorage.setItem('kfmID_', response.id);
             window.location = '#/scripts';
         } else {
             swal(response.result);
@@ -97,6 +104,39 @@ app.controller('RegisterController', function ($scope, $location) {
 
 });
 
+
+app.controller('EditPController', function ($scope, $location) {
+
+    $scope.init = function () {
+        window.drawNavigation();
+    }
+});
+
+app.controller('ProfileController', function ($scope, $location) {
+
+    $scope.init = function () {
+        window.drawNavigation();
+    }
+});
+
+app.controller('ScriptCreateController', function ($scope, $location) {
+
+    $scope.init = function () {
+        window.drawNavigation();
+    }
+
+    $scope.title = 'Dodaj novo idejo'
+});
+
+app.controller('ScriptUpdateController', function ($scope, $location) {
+
+    $scope.init = function () {
+        window.drawNavigation();
+    }
+
+    $scope.title = 'Posodobi svojo idejo'
+});
+
 app.controller('ScriptController', function ($scope, $location) {
 
     $scope.init = function () {
@@ -113,3 +153,5 @@ app.controller('ScriptController', function ($scope, $location) {
         content: 'nč kj vlk',
     }]
 });
+
+

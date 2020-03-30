@@ -3,6 +3,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const authRoutes = require("./server/auth.js");
+const scriptRoutes = require("./server/auth.js");
 
 const app = express();
 app.use(bodyParser.json());
@@ -18,8 +19,9 @@ app.get("/*", function (req, res) {
 
 
 app.use("/api/auth", authRoutes);
+app.use("/api/scripts", scriptRoutes);
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 4444;
 app.listen(port);
 
 console.log("App is listening on port " + port);

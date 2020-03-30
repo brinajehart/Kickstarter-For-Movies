@@ -6,10 +6,13 @@
     <li class="nav-item">
         <a class="nav-link" href="#/scripts/"><i class="material-icons">view_day</i>Scripts</a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#/create/script"><i class="material-icons">input</i>Add Script</a>
+    </li>
 </ul>
 <ul style="width: 50%; display: flex; justify-content: flex-end; padding: 0 !important; margin: 0 !important">
     <li class="nav-item">
-        <a class="nav-link user-label" href="#/login"><i class="material-icons">face</i>USER: <span
+        <a class="nav-link user-label" id="profilelink" }}><i class="material-icons">face</i>USER: <span
                 id="DN_placeholder"></span></a>
     </li>
     <li class="nav-item">
@@ -19,6 +22,7 @@
 
 <script>
     $(document).ready(() => {
+        $('#profilelink').attr('href', `#/profile/${localStorage.getItem('kfmID_')}`)
         $("#DN_placeholder").html(localStorage.getItem('kfmDN_'));
     })
 </script>
