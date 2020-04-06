@@ -157,6 +157,7 @@ app.controller('ScriptUpdateController', ['$scope', '$routeParams', function ($s
     $scope.init = async function () {
         window.drawNavigation();
         const genresResponse = await services.getGenres();
+        $scope.userID = localStorage.getItem('kfmID_');
         if (genresResponse.ok) {
             $scope.genres = genresResponse.result;
             $scope.$apply();
@@ -167,6 +168,10 @@ app.controller('ScriptUpdateController', ['$scope', '$routeParams', function ($s
             $scope.scriptForm = scriptResponse.result;
             $scope.$apply();
             setTimeout(() => document.getElementById("title").focus(), 200);
+        }
+
+        if ($scope.userID != $scope.scriptForm.user_id) {
+            window.history.back();
         }
     }
     
@@ -202,6 +207,7 @@ app.controller('ScriptController', function ($scope, $location) {
     $scope.init = async function () {
         window.drawNavigation();
         const response = await services.getScripts();
+        $scope.userID = localStorage.getItem('kfmID_');
         $scope.scripts = response.result.map(item => ({
             ...item,
             datecreated: moment(item.datecreated).format('MMMM Do YYYY')
