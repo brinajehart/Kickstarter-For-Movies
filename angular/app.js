@@ -37,8 +37,9 @@ const goTo = ($location, url) => {
 
 app.filter('ytEmbed', function() {
     return function(link) {
-        var newLink = link.replace('/watch?v=', '/embed/');
-        return newLink;
+        if (link.includes('/watch?v=')) 
+            return link.replace('/watch?v=', '/embed/')
+        return link;
     }
 });
 

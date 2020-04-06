@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 
 body {
-  background: url(https://www.wallpaperup.com/uploads/wallpapers/2012/11/21/22252/4017e3ef45ecad1fb1ee9a8f3635eab9-700.jpg);
+  background: url(http://getdrawings.com/vectors/simple-vector-wallpaper-1.jpg);
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -12,7 +12,7 @@ body {
 }
 
 a {
-  color: grey;
+  color: rgb(224, 224, 224);
   transition: all 0.3s;
 }
 
@@ -167,13 +167,19 @@ a.user-label:hover {
 
 .list-unstyled {
   min-width: 200px !important;
-  width: 50% !important;
+  width: 100% !important;
+}
+
+.script-item {
+    margin-left: 20% !important;
+    width: 60% !important;
+    min-width: 300px !important;
 }
 
 .kfm-card, .card-footer {
     min-width: 200px !important;
     width: 80vw;
-    background-color: #b8b8b894;
+    background-color: #b8b8b8de;
 }
 
 .kfm-card {
