@@ -35,6 +35,13 @@ const goTo = ($location, url) => {
     $location.url(url);
 }
 
+app.filter('ytEmbed', function() {
+    return function(link) {
+        var newLink = link.replace('/watch?v=', '/embed/');
+        return newLink;
+    }
+});
+
 app.controller('DefController', function ($scope, $location) {
 
     $scope.init = function () {

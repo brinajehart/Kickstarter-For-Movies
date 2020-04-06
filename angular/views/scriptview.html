@@ -2,6 +2,8 @@
     <div class="card kfm-card">
         <h5 class="card-header">{{ scriptView.title }}</h5>
         <div class="card-body">
+            <iframe style="width: 100%; height: 30vw" src="{{ scriptView.trailer | ytEmbed }}">
+            </iframe>
             <small>{{ scriptView.datecreated }}</small>
             <h5 class="card-title">{{ scriptView.description }}</h5>
         </div>
