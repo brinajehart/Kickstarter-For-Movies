@@ -60,9 +60,7 @@ router.post('/login-user', (req, res, next) => {
                         let jwtToken = jwt.sign({
                             email: result[0].email,
                             userId: result[0].id
-                        }, "kfm-key-420", {
-                            expiresIn: "1h"
-                        });
+                        }, "kfm-key-420");
                         res.status(200).json({
                             ok: true,
                             id: result[0].id,
