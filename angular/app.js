@@ -215,7 +215,11 @@ app.controller('ScriptViewController', ['$scope', '$routeParams', function ($sco
         const commentsResponse = await services.getComments($routeParams.id);
         if (scriptResponse.ok) {
             console.log(commentsResponse);
-            $scope.comments = commentsResponse.result;
+            $scope.comments = commentsResponse.result.map(item => ({
+                ...item,
+                date_created: moment(item.date_created).format('MMMM Do YYYY'),
+                avatar: `http://www.gravatar.com/avatar/${CryptoJS.MD5(item.email)}.jpg?s=80&d`
+            }));
             $scope.$apply();
         }
     }
@@ -231,7 +235,8 @@ app.controller('ScriptViewController', ['$scope', '$routeParams', function ($sco
                     console.log(commentsResponse);
                     $scope.comments = commentsResponse.result.map(item => ({
                         ...item,
-                        date_created: moment(item.date_created).format('MMMM Do YYYY')
+                        date_created: moment(item.date_created).format('MMMM Do YYYY'),
+                        avatar: `http://www.gravatar.com/avatar/${CryptoJS.MD5(item.email)}.jpg?s=80&d`
                     }));
                     $scope.$apply();
                 }

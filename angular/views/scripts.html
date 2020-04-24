@@ -4,9 +4,10 @@
             <img class="mr-3 list-img" ng-src="script.img" onerror="this.src='./../resources/img-error.png'">
             <div class="media-body">
                 <h5 class="mt-0 mb-1">{{ script.title }}</h5>
+                <a href="{{ script.trailer }}">{{ script.trailer }}</a><br>
                 <small>{{ script.datecreated }}</small><br/>
-                <small>Description:</small> {{ script.description ? script.description : '/' }}<br/>
-                <a href="{{ script.trailer }}">{{ script.trailer }}</a>
+                <small>By: {{ script.display_name }}</small><br/>
+                <small>Description:</small> {{ script.description ? script.description : '/' }}
             </div>
             <div>
                 <button ng-if="userID == script.user_id" type="button" ng-click="goToEditScript(script.id)" class="btn btn-raised btn-primary kick-btn">Edit</button>

@@ -20,10 +20,8 @@
                     <img src="{{ comment.avatar }}" alt="..." class="img-thumbnail" style="margin-right: 10px">
                     <div class="bmd-list-group-col">
                         <p class="list-group-item-heading">{{ comment.content }}</p>
-                        <p class="list-group-item-text">
-                            {{ comment.date_created }}
-                            by: <b>{{ comment.display_name }}</b>
-                        </p>
+                        <p class="list-group-item-text">{{ comment.date_created }}</p>
+                        <span>by: <b>{{ comment.display_name }}</b></span>
                     </div>
                 </a>
                 <div ng-if="!comments.length" class="alert alert-info" role="alert">

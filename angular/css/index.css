@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
 
 body {
-  background: url(https://wallpapertag.com/wallpaper/full/9/0/0/574570-large-wallpaper-black-and-white-2560x1600-for-full-hd.jpg);
+  background: url(https://free4kwallpapers.com/uploads/originals/2015/07/13/blackwhite-fog-roads-trees.jpg);
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -146,9 +146,18 @@ hr {
 .list-container li {
   margin: 30px;
   padding: 10px;
-  background: linear-gradient(to right, #b4b4b4a6, #2c2c2c93);
+  background: #b6b6b683;
   box-shadow: 0 10px 15px -3px #00000073, 0 4px 6px -2px #00000037;
-  border-radius: 10px;
+  border-radius: 5px;
+  color: #444 !important;
+}
+
+.list-container li a {
+    color: #444 !important;
+}
+
+.list-container li a:hover {
+    color: red !important;
 }
 
 .list-img {

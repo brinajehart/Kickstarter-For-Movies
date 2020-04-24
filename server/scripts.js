@@ -24,17 +24,19 @@ router.post('/get-script-by-id/:scriptId', requireAuth, async (req, res, next) =
     qb.select("*").from('scripts')
         .where('id', scriptId)
         .get((err, result) => {
+            console.log(err, result);
             qb.disconnect();
             res.status(200).json({
                 ok: true,
-                result: result
+                result: result[0]
             });
         });
 });
 
 router.post('/get-all-scripts', async (req, res, next) => {
     const qb = new QueryBuilder(settings, 'mysql', 'single');
-    qb.select("*").from('scripts')
+    qb.select("s.*, u.display_name, u.email").from('scripts s')
+        .join("users u", "s.user_id=u.id", "left")
         .get((err, result) => {
             qb.disconnect();
             res.status(200).json({
