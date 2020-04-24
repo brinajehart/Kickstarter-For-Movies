@@ -4,6 +4,7 @@
 body {
   background: url(https://free4kwallpapers.com/uploads/originals/2015/07/13/blackwhite-fog-roads-trees.jpg);
   background-size: cover;
+  background-position: fixed;
   background-repeat: no-repeat;
 }
 
