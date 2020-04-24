@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const authRoutes = require("./server/auth.js");
 const scriptRoutes = require("./server/scripts.js");
+const commentRoutes = require('./server/comments.js');
 
 const app = express();
 app.use(bodyParser.json());
@@ -20,6 +21,7 @@ app.get("/*", function (req, res) {
 
 app.use("/api/auth", authRoutes);
 app.use("/api/scripts", scriptRoutes);
+app.use("/api/comments", commentRoutes);
 
 const port = process.env.PORT || 4444;
 app.listen(port);

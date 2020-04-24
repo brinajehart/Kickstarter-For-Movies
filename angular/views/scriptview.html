@@ -6,6 +6,31 @@
             </iframe>
             <small>{{ scriptView.datecreated }}</small>
             <h5 class="card-title">{{ scriptView.description }}</h5>
+            <h3>Post a new comment</h3>
+            <form>
+                <div class="form-group">
+                    <input ng-model="newCommentField" type="text" class="form-control" id="cmnt1"
+                        placeholder="Enter Comment">
+                </div>
+                <button ng-click="addNewComment()" type="submit" class="btn btn-outline-warning">Post</button>
+            </form>
+            <h4>Older comments</h4>
+            <ul class="list-group">
+                <a class="list-group-item" ng-repeat="comment in comments track by $index">
+                    <img src="{{ comment.avatar }}" alt="..." class="img-thumbnail" style="margin-right: 10px">
+                    <div class="bmd-list-group-col">
+                        <p class="list-group-item-heading">{{ comment.content }}</p>
+                        <p class="list-group-item-text">
+                            {{ comment.date_created }}
+                            by: <b>{{ comment.display_name }}</b>
+                        </p>
+                    </div>
+                </a>
+                <div ng-if="!comments.length" class="alert alert-info" role="alert">
+                    This script doesn't have any comments!
+                </div>
+            </ul>
+
         </div>
     </div>
 </div>

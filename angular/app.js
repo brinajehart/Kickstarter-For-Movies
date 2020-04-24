@@ -37,9 +37,11 @@ const goTo = ($location, url) => {
 
 app.filter('ytEmbed', function () {
     return function (link) {
-        if (link.includes('/watch?v='))
-            return link.replace('/watch?v=', '/embed/')
-        return link;
+        if (link) {
+            if (link.includes('/watch?v='))
+                return link.replace('/watch?v=', '/embed/')
+            return link;
+        }
     }
 });
 
@@ -197,18 +199,50 @@ app.controller('ScriptUpdateController', ['$scope', '$routeParams', function ($s
 app.controller('ScriptViewController', ['$scope', '$routeParams', function ($scope, $routeParams) {
 
     $scope.scriptView = {};
+    $scope.comments = [];
+    $scope.newCommentField = ""
 
     $scope.init = async function () {
         window.drawNavigation();
         const scriptResponse = await services.getScriptById($routeParams.id);
         if (scriptResponse.ok) {
+            console.log(scriptResponse);
             $scope.scriptView = scriptResponse.result;
             $scope.scriptView.datecreated = moment($scope.scriptView.datecreated).format('MMMM Do YYYY');
             $scope.$apply();
         }
+
+        const commentsResponse = await services.getComments($routeParams.id);
+        if (scriptResponse.ok) {
+            console.log(commentsResponse);
+            $scope.comments = commentsResponse.result;
+            $scope.$apply();
+        }
     }
 
-    $scope.title = 'Update Script'
+    $scope.addNewComment = async function () {
+        if ($scope.newCommentField) {
+            const data = { content: $scope.newCommentField };
+            const newCommentResponse = await services.postComment(data, $routeParams.id);
+            if (newCommentResponse.ok) {
+                swal("Comment posted successfully!");
+                const commentsResponse = await services.getComments($routeParams.id);
+                if (commentsResponse.ok) {
+                    console.log(commentsResponse);
+                    $scope.comments = commentsResponse.result.map(item => ({
+                        ...item,
+                        date_created: moment(item.date_created).format('MMMM Do YYYY')
+                    }));
+                    $scope.$apply();
+                }
+            } else {
+                swal("Something went wrong!");
+            }
+        } else {
+            swal("The comment field is not valid!");
+        }
+    }
+
 }]);
 
 app.controller('ScriptController', function ($scope, $location) {

@@ -128,4 +128,39 @@ class services {
             resolve(content);
         });
     }
+
+
+    static async postComment(formData, id) {
+        return new Promise(async (resolve, reject) => {
+            const rawResponse = await fetch(`/api/comments/create/${id}`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Token ${localStorage.getItem('kfm_')}`,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ ...formData })
+            });
+            const content = await rawResponse.json();
+
+            resolve(content);
+        });
+    }
+
+    static async getComments(id) {
+        return new Promise(async (resolve, reject) => {
+            const rawResponse = await fetch(`/api/comments/get-all-comments/${id}`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Token ${localStorage.getItem('kfm_')}`,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            });
+            const content = await rawResponse.json();
+
+            resolve(content);
+        });
+    }
+
 }

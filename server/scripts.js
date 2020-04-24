@@ -27,7 +27,7 @@ router.post('/get-script-by-id/:scriptId', requireAuth, async (req, res, next) =
             qb.disconnect();
             res.status(200).json({
                 ok: true,
-                result: result[0]
+                result: result
             });
         });
 });
