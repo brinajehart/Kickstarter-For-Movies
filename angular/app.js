@@ -13,8 +13,8 @@ var app = angular.module('mKicksStarter', [], function ($routeProvider, $locatio
         .when('/profile/:id', { templateUrl: "./views/profile.html", controller: "ProfileController", resolve: { loggedIn } })
         .when('/edit/profile', { templateUrl: "./views/editprofile.html", controller: "EditPController", resolve: { loggedIn } })
         .when('/scripts', { templateUrl: './views/scripts.html', controller: "ScriptController" })
-        .when('/create/script', { templateUrl: './views/scriptform.html', controller: "ScriptCreateController", resolve: { loggedIn }})
-        .when('/update/script/:id', { templateUrl: './views/scriptform.html', controller: "ScriptUpdateController", resolve: { loggedIn }})
+        .when('/create/script', { templateUrl: './views/scriptform.html', controller: "ScriptCreateController", resolve: { loggedIn } })
+        .when('/update/script/:id', { templateUrl: './views/scriptform.html', controller: "ScriptUpdateController", resolve: { loggedIn } })
         .when('/view/script/:id', { templateUrl: './views/scriptview.html', controller: "ScriptViewController", resolve: { loggedIn } })
         .otherwise({ redirectTo: "/" });
 
@@ -35,9 +35,9 @@ const goTo = ($location, url) => {
     $location.url(url);
 }
 
-app.filter('ytEmbed', function() {
-    return function(link) {
-        if (link.includes('/watch?v=')) 
+app.filter('ytEmbed', function () {
+    return function (link) {
+        if (link.includes('/watch?v='))
             return link.replace('/watch?v=', '/embed/')
         return link;
     }
@@ -123,8 +123,17 @@ app.controller('EditPController', function ($scope, $location) {
 
 app.controller('ProfileController', function ($scope, $location) {
 
-    $scope.init = function () {
+    $scope.user = {};
+
+    $scope.init = async function () {
         window.drawNavigation();
+        const response = await services.getProfile();
+        if (response.ok) {
+            $scope.user = response.result;
+            $scope.user.date_created = moment(response.result.date_created).format('MMMM Do YYYY');
+            $scope.user.avatar = `http://www.gravatar.com/avatar/${CryptoJS.MD5($scope.user.email)}.jpg?s=80&d`;
+            $scope.$apply();
+        }
     }
 });
 
@@ -143,7 +152,7 @@ app.controller('ScriptCreateController', function ($scope, $location) {
         }
     }
 
-    $scope.submit = async function() {
+    $scope.submit = async function () {
         const response = await services.createScript($scope.scriptForm);
     }
 
@@ -175,9 +184,9 @@ app.controller('ScriptUpdateController', ['$scope', '$routeParams', function ($s
             window.history.back();
         }
     }
-    
 
-    $scope.submit = async function() {
+
+    $scope.submit = async function () {
         const response = await services.updateScript($scope.scriptForm, $routeParams.id);
     }
 

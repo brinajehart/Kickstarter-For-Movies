@@ -112,4 +112,20 @@ class services {
             resolve(content);
         });
     }
+
+    static async getProfile() {
+        return new Promise(async (resolve, reject) => {
+            const rawResponse = await fetch(`/api/auth/user-data`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Token ${localStorage.getItem('kfm_')}`,
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            });
+            const content = await rawResponse.json();
+
+            resolve(content);
+        });
+    }
 }

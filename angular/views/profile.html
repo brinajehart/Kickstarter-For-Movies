@@ -1,10 +1,32 @@
 <div ng-init="init()">
-    <div class="card">
+    <div class="card" style="background: #afafafcc">
         <h5 class="card-header">Profile</h5>
         <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <h5 class="card-title">
+                <img src="{{ user.avatar }}" alt="..." class="img-thumbnail" style="margin: 10px">
+            </h5>
+            <p class="card-text">
+                <ul class="list-group bmd-list-group-sm">
+                    <a class="list-group-item">
+                        <div class="bmd-list-group-col">
+                            <p class="list-group-item-heading">{{ user.email }}</p>
+                            <p class="list-group-item-text">Email</p>
+                        </div>
+                    </a>
+                    <a class="list-group-item">
+                        <div class="bmd-list-group-col">
+                            <p class="list-group-item-heading">{{ user.display_name }}</p>
+                            <p class="list-group-item-text">Full name</p>
+                        </div>
+                    </a>
+                    <a class="list-group-item">
+                        <div class="bmd-list-group-col">
+                            <p class="list-group-item-heading">{{ user.date_created }}</p>
+                            <p class="list-group-item-text">Member since</p>
+                        </div>
+                    </a>
+                </ul>
+            </p>
         </div>
     </div>
 </div>

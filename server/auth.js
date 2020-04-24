@@ -80,17 +80,17 @@ router.post('/login-user', (req, res, next) => {
         });
 });
 
-router.post('/get-username', async (req, res, next) => {
-    let token = await parseToken(req.body.tokenString);
+router.post('/user-data', requireAuth, async (req, res, next) => {
+    let token = req.USER_ID;
     const qb = new QueryBuilder(settings, 'mysql', 'single');
     console.log(token, "129");
-    qb.select("name, surname").from('users')
-        .where('id', token._id)
+    qb.select("*").from('users')
+        .where('id', token)
         .get((err, result) => {
             qb.disconnect();
             res.status(200).json({
                 ok: true,
-                result: result
+                result: result[0]
             });
         });
 });
